@@ -2,11 +2,15 @@ package com.shuttle.youtube.hospitalManagement.service;
 
 import com.shuttle.youtube.hospitalManagement.entity.Patient;
 import com.shuttle.youtube.hospitalManagement.repository.PatientRepository;
+import jakarta.persistence.GeneratedValue;
 import jakarta.transaction.Transactional;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import org.springframework.stereotype.Service;
 
 @Service
+
 @RequiredArgsConstructor
 public class PatientService {
  private final PatientRepository patientRepository;
@@ -16,6 +20,7 @@ public class PatientService {
              .orElseThrow(() -> new RuntimeException("Patient not found!"));
      Patient p2=patientRepository.findById(id)
              .orElseThrow(() -> new RuntimeException("Patient not found!"));
+     p1.setName("Klein Moretti");
  return p1;
 
  }
