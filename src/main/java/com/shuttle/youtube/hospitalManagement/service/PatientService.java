@@ -2,6 +2,7 @@ package com.shuttle.youtube.hospitalManagement.service;
 
 import com.shuttle.youtube.hospitalManagement.entity.Patient;
 import com.shuttle.youtube.hospitalManagement.repository.PatientRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class PatientService {
  private final PatientRepository patientRepository;
+ @Transactional      // if data already present in the persistence context don't call it again
  public Patient getPatientById(Long id) {
      Patient p1=patientRepository.findById(id)
              .orElseThrow(() -> new RuntimeException("Patient not found!"));
