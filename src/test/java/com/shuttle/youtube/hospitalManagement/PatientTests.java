@@ -1,6 +1,7 @@
 package com.shuttle.youtube.hospitalManagement;
 
 import com.shuttle.youtube.hospitalManagement.entity.Patient;
+import com.shuttle.youtube.hospitalManagement.entity.type.BloodGroupType;
 import com.shuttle.youtube.hospitalManagement.repository.PatientRepository;
 import com.shuttle.youtube.hospitalManagement.service.PatientService;
 import org.junit.jupiter.api.Test;
@@ -31,8 +32,12 @@ public class PatientTests {
                 public void testTransactionMethods() {
 //                 Patient patient= patientService.getPatientById(1L);
 //                 System.out.println(patient);
-            Patient patient= patientRepository.findByName("Klein Moretti");
-            System.out.println(patient);
+//            Patient patient= patientRepository.findByName("Klein Moretti");
+            List<Patient> patientList = patientRepository.findByBloodType(BloodGroupType.valueOf("O_POSITIVE"));
+            for(Patient p:patientList){
+                System.out.println(p);
+            }
+
 
     }
 }
