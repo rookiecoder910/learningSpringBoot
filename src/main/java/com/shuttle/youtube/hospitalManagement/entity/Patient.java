@@ -1,18 +1,20 @@
 package com.shuttle.youtube.hospitalManagement.entity;
 
+import com.shuttle.youtube.hospitalManagement.entity.type.BloodGroupType;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
-
+import java.time.LocalDateTime;
 @Entity
-@ToString
 @Getter
 @Setter
+@ToString
 @Table(
-        name = "patient_tbl",
+        name = "patient",
         uniqueConstraints = {
                 @UniqueConstraint(
                         name = "unique_patient_email",
@@ -31,12 +33,29 @@ import java.time.LocalDate;
         }
 )
 public class Patient {
+
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(nullable = false, length = 50)
     private String name;
+
+    @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;
+
+    @Column(nullable = false)
     private String email;
+
+
+    @Column(nullable = false)
     private String gender;
 
+    @Enumerated(EnumType.STRING)
+
+    private BloodGroupType bloodGroup;
+
+    @CreationTimestamp
+    @Column(updatable = false)
+    private LocalDateTime createdAt;
 }

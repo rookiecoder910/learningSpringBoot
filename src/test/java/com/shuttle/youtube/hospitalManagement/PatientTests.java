@@ -29,8 +29,10 @@ public class PatientTests {
     }
         @Test
                 public void testTransactionMethods() {
-                 Patient patient= patientService.getPatientById(1L);
-                 System.out.println(patient);
+//                 Patient patient= patientService.getPatientById(1L);
+//                 System.out.println(patient);
+            Patient patient= patientRepository.findByName("Klein Moretti");
+            System.out.println(patient);
 
     }
 }
