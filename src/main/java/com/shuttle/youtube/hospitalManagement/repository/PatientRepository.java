@@ -1,5 +1,6 @@
 package com.shuttle.youtube.hospitalManagement.repository;
 
+import com.shuttle.youtube.hospitalManagement.dto.BloodGroupCountResponseEntity;
 import com.shuttle.youtube.hospitalManagement.entity.Patient;
 import com.shuttle.youtube.hospitalManagement.entity.type.BloodGroupType;
 import jakarta.transaction.Transactional;
@@ -29,8 +30,8 @@ public interface PatientRepository extends JpaRepository<Patient, Long> {
     @Query("select p from Patient p where p.birthDate > :birthDate")
     List<Patient> findByBornAfterDate(@Param("birthDate") LocalDate birthDate);
 
-    @Query("select p.bloodGroup, Count(p) from Patient p group by p.bloodGroup")
-    List<Object[]> countEachBloodGroupType();
+    @Query("select new com.shuttle.youtube.hospitalManagement.dto.BloodGroupCountResponseEntity( p.bloodGroup ,Count(p)) from Patient p group by p.bloodGroup")
+    List<BloodGroupCountResponseEntity> countEachBloodGroupType();
 
 
 

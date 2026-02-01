@@ -1,5 +1,6 @@
 package com.shuttle.youtube.hospitalManagement;
 
+import com.shuttle.youtube.hospitalManagement.dto.BloodGroupCountResponseEntity;
 import com.shuttle.youtube.hospitalManagement.entity.Patient;
 import com.shuttle.youtube.hospitalManagement.entity.type.BloodGroupType;
 import com.shuttle.youtube.hospitalManagement.repository.PatientRepository;
@@ -33,11 +34,12 @@ public class PatientTests {
 //                 Patient patient= patientService.getPatientById(1L);
 //                 System.out.println(patient);
 //            Patient patient= patientRepository.findByName("Klein Moretti");
-            List<Patient> patientList = patientRepository.findByBloodType(BloodGroupType.valueOf("O_POSITIVE"));
-            for(Patient p:patientList){
-                System.out.println(p);
+            List<BloodGroupCountResponseEntity> bloodGroupList = patientRepository.countEachBloodGroupType();
+            for(BloodGroupCountResponseEntity bloodGroupCountResponse:bloodGroupList){
+                System.out.println(bloodGroupCountResponse);
             }
 
 
     }
 }
+//understood jpa and pagination to reduce load on the client side by loading only fragments of data at a time
