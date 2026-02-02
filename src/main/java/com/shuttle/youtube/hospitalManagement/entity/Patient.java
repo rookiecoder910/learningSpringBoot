@@ -9,6 +9,8 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -58,4 +60,9 @@ public class Patient {
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime createdAt;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "patient_insurance_id")
+    private Insurance insurance;       //owning side is the one with foreign key
+    @OneToMany(mappedBy = "patient")
+    private List<Appointment> appointment;
 }
