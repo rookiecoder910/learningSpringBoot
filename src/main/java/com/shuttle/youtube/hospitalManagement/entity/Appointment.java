@@ -26,5 +26,8 @@ public class Appointment {
     @ManyToOne
     @JoinColumn(name = "patient_id", nullable = false) //for every appointment patient must exist
     private Patient patient;
+    @ManyToOne
+    @JoinColumn(name = "doctor_id", nullable = false)
+    private Doctor doctor;
 }
 //entity which consists of foreign key becomes owning side which in case is appointment table which is also dependent on patient and doctor table

@@ -60,7 +60,7 @@ public class Patient {
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime createdAt;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = { CascadeType.MERGE, CascadeType.PERSIST})
     @JoinColumn(name = "patient_insurance_id")
     private Insurance insurance;       //owning side is the one with foreign key
     @OneToMany(mappedBy = "patient")
