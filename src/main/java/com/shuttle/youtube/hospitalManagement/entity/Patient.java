@@ -64,5 +64,6 @@ public class Patient {
     @JoinColumn(name = "patient_insurance_id")
     private Insurance insurance;       //owning side is the one with foreign key
     @OneToMany(mappedBy = "patient")
+    @ToString.Exclude //
     private List<Appointment> appointment;
 }
